@@ -11,6 +11,8 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
@@ -19,6 +21,10 @@ public class FicheroXml {
 	// Nuestro fichero para guardar y leer
 	public static File fichero = new File("settings.xml");
 	public static DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	
+	public static void println(String txt) {
+		System.out.println("=>"+txt);
+	}
 	
 	
 	private static void crearXML() throws Exception {
@@ -43,7 +49,7 @@ public class FicheroXml {
 		Text textNode3 = doc.createTextNode("Texto de Elemento Secundario 1");
 		secundario3.appendChild(textNode3);
 		principal.appendChild(secundario3);
-		
+		  
 		
 		// Guardar en el file
 		// ===============================
@@ -66,6 +72,19 @@ public class FicheroXml {
 		  
 		// Donde guardaremos todo - Nuesto RootFile
 		Document doc = db.parse(fichero); 
+		
+		NodeList itemsPrincipal = doc.getElementsByTagName("elementoPrincipal");
+		Node nodoPrincipal = itemsPrincipal.item(0); // Recoger el nodo Principal - Root
+ 
+		NodeList itemsSecundario = doc.getElementsByTagName("elementoSecundario");
+		for (int i = 0; i < itemsSecundario.getLength(); i++) {
+			Node nodo = itemsSecundario.item(i);
+			String tagName = nodo.getNodeName(); // elementoSecundario
+			String texto = nodo.getTextContent(); // Texto de Elemento Secundario 1
+		} 
+		
+		println(""+itemsPrincipal.getLength());
+		println(""+itemsSecundario.getLength());
 		
 	}
 	
