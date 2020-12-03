@@ -15,9 +15,7 @@ public class EjemplosCodigo {
 		System.out.println("int es Obj: "+ (flotante instanceof Object)  );
 		
 		System.out.println("entero es Integer: "+ (entero instanceof Integer)  );
-		System.out.println("obj es Float: "+ (obj instanceof Float)  );
-		
-		
+		System.out.println("obj es Float: "+ (obj instanceof Float)  ); 
 		
 		
 	}
